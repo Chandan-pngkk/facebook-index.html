@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="as">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucent GK - Assamese Ebook</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      background:linear-gradient(135deg,#f5f7fa,#c3cfe2);
+      min-height:100vh;display:flex;flex-direction:column
+    }
+    header{
+      background:linear-gradient(to right,#1877f2,#42a5f5);
+      color:#fff;text-align:center;padding:25px 20px
+    }
+    .logo{font-size:2.5rem;margin-bottom:10px}
+    .container{
+      max-width:800px;margin:40px auto;padding:30px;
+      background:#fff;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.1)
+    }
+    .book-cover{text-align:center;margin:20px 0}
+    .book-cover img{max-width:200px;border-radius:10px}
+    .features{display:flex;flex-wrap:wrap;gap:15px;margin:25px 0}
+    .feature{flex:1 1 200px;background:#f8f9fa;padding:15px;border-radius:10px;text-align:center}
+    .feature i{font-size:2rem;color:#1877f2;margin-bottom:10px}
+    .price{
+      background:#e3f2fd;color:#0d47a1;font-size:1.3rem;
+      padding:15px;border-radius:10px;text-align:center;font-weight:bold
+    }
+    .form-group{margin:25px 0}
+    label{font-weight:600;display:block;margin-bottom:8px}
+    input{
+      width:100%;padding:15px;border-radius:8px;border:2px solid #ddd;font-size:16px
+    }
+    button{
+      width:100%;padding:16px;margin-top:10px;
+      background:linear-gradient(to right,#1877f2,#0d47a1);
+      border:none;border-radius:8px;
+      color:#fff;font-size:1.1rem;font-weight:bold;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px
+    }
+    button:disabled{background:#aaa;cursor:not-allowed}
+    .reward-section{
+      margin-top:30px;padding:25px;border-radius:12px;
+      background:linear-gradient(135deg,#e0f2f1,#b2dfdb);
+      text-align:center;animation:fadeIn 1s
+    }
+    .hidden{display:none}
+    footer{text-align:center;padding:15px;color:#666;margin-top:auto}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo"><i class="fab fa-facebook"></i></div>
+  <h1>Assamese ebook store</h1>
+  <p>SSC আৰু অসম চৰকাৰৰ নিযুক্তিমূলক পৰীক্ষাৰ বাবে</p>
+</header>
+
+<div class="container">
+
+  <div class="book-cover">
+    <img src="https://i.postimg.cc/QM91ZX1d/20251026-140445.jpg">
+  </div>
+
+  <div class="features">
+    <div class="feature"><i class="fas fa-language"></i><h3>সম্পূৰ্ণ অসমীয়া ভাষাত </h3></div>
+    <div class="feature"><i class="fas fa-book"></i><h3>সম্পূৰ্ণ সাধাৰণ জ্ঞান</h3></div>
+    <div class="feature"><i class="fas fa-trophy"></i><h3>for ADRE, SSC, ASSAM POLICE, SI and all other assam government exam</h3></div>
+</div>
+
+  <div class="price">FREE ত লাভ কৰিবলৈ Facebook-ত Share কৰক</div>
+
+  <div class="form-group">
+    <label>আপোনাৰ Facebook নাম লিখক:</label>
+    <input type="text" id="fbName" placeholder="Facebook Name">
+  </div>
+
+  <button id="shareBtn" onclick="shareFacebook()" disabled>
+    <i class="fab fa-facebook"></i> Share on Facebook
+  </button>
+
+  <div id="reward" class="reward-section hidden">
+    <h2>🎉 অভিনন্দন!</h2>
+    <p>আপুনি সফলভাবে কাম সম্পূৰ্ণ কৰিলে।</p>
+    <a href="https://drive.google.com/drive/folders/1xuTJE-Bxgi2FH7zdzErzGVX4VjROuCdF" target="_blank">
+      <button style="background:linear-gradient(to right,#ff5722,#ff9800)">
+        <i class="fas fa-download"></i> Download Free Ebook
+      </button>
+    </a>
+  </div>
+
+</div>
+
+<footer>© 2023 Lucent GK Assamese</footer>
+
+<script>
+  let clickCount = 0;
+  const fbName = document.getElementById("fbName");
+  const shareBtn = document.getElementById("shareBtn");
+  const reward = document.getElementById("reward");
+
+  fbName.addEventListener("input", () => {
+    shareBtn.disabled = fbName.value.trim().length < 3;
+  });
+
+  function shareFacebook(){
+    const postUrl = "https://www.facebook.com/share/p/1Ed8ZUeofG/";
+
+  window.open(
+    "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(postUrl),
+    "_blank"
+    );
+
+    clickCount++;
+
+    setTimeout(()=>{
+      if(clickCount === 1){
+        alert("⚠️ We found some error, please share again");
+      }
+      if(clickCount === 2){
+        reward.classList.remove("hidden");
+      }
+    },1000);
+  }
+</script>
+
+</body>
+</html>
